@@ -27,7 +27,7 @@ public class CommentEntity {
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="article_id")
-	private ArticalEnt article;
+	private ArticleEnt article;
 	
 	@Override
 	public String toString() {

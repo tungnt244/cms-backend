@@ -50,20 +50,6 @@ public class HibernateConf {
 		return new Hibernate5Module();
 	}
 	
-//	@Bean 
-//	public PlatformTransactionManager TransactionManager() {
-//		return new JpaTransactionManager(entityManagerFactory());
-//	}
-//	
-//	@Bean 
-//	public EntityManagerFactory entityManagerFactory() {
-//		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-//		factoryBean.setPackagesToScan("org.tungnt.springcms");
-//		factoryBean.setDataSource(getDataSource());
-//		factoryBean.setJpaProperties(getHibernateProperties());
-//		return factoryBean.getNativeEntityManagerFactory();
-//	}
-	
 	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));

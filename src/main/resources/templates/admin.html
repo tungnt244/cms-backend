@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+<title>Insert title here</title>
+	<script th:src="@{/static/js/tinymce/tinymce.min.js}"></script>
+	<script th:src="@{/static/vendor/jquery/jquery.min.js}"></script>
+	<script type="text/javascript">
+	tinymce.init({
+		selector: '#mytextarea',
+		height: 500,
+		menubar: false,
+		plugins:[
+			'advlist autolink lists link image charmap print preview anchor textcolor',
+		    'searchreplace visualblocks code fullscreen',
+		    'insertdatetime media table contextmenu paste code help wordcount'
+		],
+		toolbar: 'insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | submitButton',
+		content_css: [
+		    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+		    '//www.tinymce.com/css/codepen.min.css'
+		   ],
+		setup: function (editor) {
+			editor.addButton('submitButton', {
+				text: 'Submit',
+				icon: false,
+				onclick: function() {
+					$.get("http://localhost:8080/public",
+							function(data){
+						console.log("Data loaded: " + data)
+					})
+				}
+			})
+		}
+	});
+	</script>
+</head>
+<body>
+		<h1>TinyMCE Quick Start Guide</h1>
+  		<form method="post">
+	    	<textarea id="mytextarea">Dafuq</textarea>
+	  	</form>
+</body>
+</html>

@@ -1,13 +1,7 @@
 package org.tungnt.springcms.dao;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,12 +23,16 @@ public class AbstractHibernateDAO<T>{
 		return sessionFactory.getCurrentSession();
 	}
 	
+	public T getReference(long id) {
+		return sessionFactory.getCurrentSession().load(this.clazz, id);
+	}
+	
 	public T findById(long id) {
 		return getCurrentSession().get(this.clazz, id);
 	}
 	
 	public void create(T entity) {
-		getCurrentSession().save(entity);
+		getCurrentSession().saveOrUpdate(entity);
 	}
 	
 	public void update(T entity) {
